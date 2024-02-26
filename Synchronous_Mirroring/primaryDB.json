@@ -1,0 +1,41 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Laptop",
+      "description": "Windows laptop",
+      "price": 800,
+      "category": "Technology",
+      "inStock": true
+    },
+    {
+      "id": "2",
+      "name": "Oven",
+      "description": "Siemens oven",
+      "price": 550,
+      "category": "Appliance",
+      "inStock": false
+    }
+  ],
+  "orders": [
+    {
+      "id": "98ac",
+      "products": [
+        {
+          "productId": 1,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "54b6",
+      "products": [
+        {
+          "productId": 1,
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "userCarts": {}
+}
