@@ -8,7 +8,7 @@ import joblib
 app = Flask(__name__)
 
 models_directory = '../Models/'
-loaded_models = {}  # Dictionary to store loaded models
+  # Dictionary to store loaded models
 # numerical_scaler = StandardScaler()
 # categorical_encoder = OrdinalEncoder()
 
@@ -23,9 +23,10 @@ def select_model():
             raise ValueError("Model filename not provided.")
         
         # Load the selected model if not already loaded
-        if model_filename not in loaded_models:
-            model_path = os.path.join(models_directory, model_filename)
-            loaded_models[model_filename] = joblib.load(model_path)
+        
+        model_path = os.path.join(models_directory, model_filename)
+        global loaded_models
+        loaded_models = joblib.load(model_path)
         
         return jsonify({'message': f'Model {model_filename} selected successfully.'})
     
@@ -51,12 +52,11 @@ def predict():
         # if not features:
         #     raise ValueError("Features not provided in the URL.")
 
-
         # Get the selected model
-        selected_model_filename = request.args.get('model')
-        if selected_model_filename not in loaded_models:
-            raise ValueError("Model not selected or loaded. Please select a model using /select_model endpoint.")
-        model = loaded_models[selected_model_filename]
+        # selected_model_filename = request.args.get('model')
+        # if selected_model_filename not in loaded_models:
+        #     raise ValueError("Model not selected or loaded. Please select a model using /select_model endpoint.")
+        model = loaded_models
 
         # Make the prediction with the model
         prediction = model.predict(features)
