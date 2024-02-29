@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Frontend</title>
+</head>
+<body>
+  <h1>E-commerce Frontend</h1>
+
+  <section>
+    <h2>Products</h2>
+    <button onclick="getProducts()">Get Products</button>
+    <div id="productList"></div>
+  </section>
+
+  <section>
+    <h2>Orders</h2>
+    <button onclick="placeOrder()">Place Order</button>
+    <div id="orderList"></div>
+  </section>
+
+  <section>
+    <h2>Cart</h2>
+    <button onclick="getCart()">Get Cart</button>
+    <button onclick="addToCart()">Add to Cart</button>
+    <button onclick="removeFromCart()">Remove from Cart</button>
+    <div id="cartContent"></div>
+  </section>
+
+  <script>
+    const serverUrl = 'http://localhost:3001';
+
+    async function getProducts() {
+      try {
+        const response = await fetch(`${serverUrl}/products`);
+        const products = await response.json();
+        displayProducts(products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    }
+
+    async function placeOrder() {
+      try {
+        const orderData = {
+          products: [{ productId: 1, quantity: 2 }]
+        };
+
+        const response = await fetch(`${serverUrl}/orders`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+        });
+
+        const order = await response.json();
+        console.log('Order placed:', order);
+      } catch (error) {
+        console.error('Error placing order:', error);
+      }
+    }
+
+    async function getCart() {
+      try {
+        const userId = 1;
+
+        const response = await fetch(`${serverUrl}/cart/${userId}`);
+        const cart = await response.json();
+        displayCart(cart);
+      } catch (error) {
+        console.error('Error fetching cart:', error);
+      }
+    }
+
+    async function addToCart() {
+      try {
+
+        const userId = 1;
+        const productId = 1;
+        const quantity = 1;
+
+        const response = await fetch(`${serverUrl}/cart/${userId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productId, quantity }),
+        });
+
+        const cart = await response.json();
+        console.log('Item added to cart:', cart);
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
+    }
+
+    async function removeFromCart() {
+      try {
+        
+        const userId = 1;
+        const productId = 1;
+
+        const response = await fetch(`${serverUrl}/cart/${userId}/item/${productId}`, {
+          method: 'DELETE',
+        });
+
+        const cart = await response.json();
+        console.log('Item removed from cart:', cart);
+      } catch (error) {
+        console.error('Error removing from cart:', error);
+      }
+    }
+
+    function displayProducts(products) {
+      const productListElement = document.getElementById('productList');
+      productListElement.innerHTML = '';
+
+      products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.innerHTML = `<p>${product.name} - ${product.price}</p>`;
+        productListElement.appendChild(productElement);
+      });
+    }
+
+    function displayCart(cart) {
+      const cartContentElement = document.getElementById('cartContent');
+      cartContentElement.innerHTML = '';
+
+      cart.items.forEach(item => {
+        const cartItemElement = document.createElement('div');
+        cartItemElement.innerHTML = `<p>Product ID: ${item.productId}, Quantity: ${item.quantity}</p>`;
+        cartContentElement.appendChild(cartItemElement);
+      });
+
+      const totalPriceElement = document.createElement('p');
+      totalPriceElement.innerHTML = `Total Price: ${cart.totalPrice}`;
+      cartContentElement.appendChild(totalPriceElement);
+    }
+  </script>
+</body>
+</html>
