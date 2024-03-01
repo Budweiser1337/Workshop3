@@ -41,8 +41,8 @@ def select_models(model_filename):
     # else:
     #     print('Error getting prediction:', response.json())
 
-
-model_filename = 'RandomForest.pkl'
+print('Select (copy paste and enter) a model: RandomForest.pkl or grandient_boosting.joblib')
+model_filename = input()
 # input_features = np.array([[2.0, 'male', 28.0,0.0, 0.0, 13.0, 'S']])
 # get_predictions(model_filename, input_features)
 select_models(model_filename)

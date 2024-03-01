@@ -39,11 +39,21 @@ def select_model():
 
 def predict():
     try:
-        # Extract features from the URL parameters
-        columns = ['pclass','sex',	'age',	'sibsp','parch','fare',	'embarked']
+        # Extract features adapted for the selected from the URL parameters and adapt for the se
+        model_path = os.path.join(models_directory,'RandomForest.pkl')
+        a=joblib.load(model_path)
+        
         features = request.args.getlist('features')
         features=np.array([features])
-        features=pd.DataFrame(features, columns=columns)
+        if type(loaded_models) == type(a):
+            columns = ['pclass','sex',	'age',	'sibsp','parch','fare',	'embarked']
+            features=pd.DataFrame(features, columns=columns)
+        else:
+            columns = ['sex',	'age',	'fare',	'embarked']
+            features=pd.DataFrame(features, columns=columns)
+        
+
+
 
         # Preprocess features
         # features=np.array(features)
