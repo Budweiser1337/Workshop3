@@ -1,4 +1,43 @@
 # Workshop3
+# Practical Exercise: From Local to Decentralized Computation
+Q1. RandomForest accuracy.
+
+![RandomForest Accuracy](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/RandomFAccuracy.JPG)
+
+GradientBoosting accuracy.
+
+![GradientBoosting Accuracy](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/GradientBoosting.JPG)
+
+Standarized API response.
+
+![API Standarization](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/API_Standarization.JPG)
+
+Q2. Ngrok servs.
+
+![Ngrok Servs](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/NgrokServ.JPG)
+
+Ngrok Urls.
+
+![Ngrok URLs](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/NgrokURLs.JPG)
+
+Consensus prediction.
+
+![Consensus Prediction](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/Consensus_pred.JPG)
+
+# Introducing Consensus with Slashing Mechanism
+
+Q3. Weights system.
+
+![Weights Prediction](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/WeightsPred.JPG)
+
+Q4. Proof-of-stake consensus.
+
+![Proof-of-stake Consensus](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/proof.JPG)
+
+Output
+
+![Proof-of-stake Consensus Output](https://github.com/Budweiser1337/Workshop3/blob/main/API/Images/proof-of-stake_consensus.JPG)
+
 
 # Part B - E-commerce
 
